@@ -1,0 +1,30 @@
+<div class="container">
+  <header class="dashboard-header">
+    <h2>📊 Business Insights Dashboard</h2>
+    <p>A demo Angular project showcasing interactive charts and widgets.</p>
+  </header>
+
+  <gridster [options]="options">
+    <gridster-item *ngFor="let item of dashboard" [item]="item">
+      <mat-card class="chart-card">
+        <mat-card-header>
+          <mat-card-title>{{ item.chart | titlecase }} Chart</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <div class="chart-container">
+            <canvas *ngIf="item.chart === 'line'" baseChart [data]="lineChartData" [options]="chartOptions"
+              type="line"></canvas>
+            <canvas *ngIf="item.chart === 'bar'" baseChart [data]="barChartData" [options]="chartOptions"
+              type="bar"></canvas>
+            <canvas *ngIf="item.chart === 'pie'" baseChart [data]="pieChartData" [options]="chartOptions"
+              type="pie"></canvas>
+            <canvas *ngIf="item.chart === 'radar'" baseChart [data]="radarChartData" [options]="chartOptions"
+              type="radar"></canvas>
+            <canvas *ngIf="item.chart === 'doughnut'" baseChart [data]="doughnutChartData" [options]="chartOptions"
+              type="doughnut"></canvas>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </gridster-item>
+  </gridster>
+</div>
