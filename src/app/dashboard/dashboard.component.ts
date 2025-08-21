@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { GridsterModule, GridsterConfig, GridsterItem } from 'angular-gridster2';
 import { NgChartsModule } from 'ng2-charts';
@@ -12,7 +12,7 @@ import { MatCardModule } from '@angular/material/card';
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss']
 })
-export class DashboardComponent {
+export class DashboardComponent implements OnInit {
   options: GridsterConfig = {
     draggable: { enabled: true },
     resizable: { enabled: true },
@@ -109,4 +109,9 @@ export class DashboardComponent {
       }
     ]
   };
+
+  ngOnInit() {
+    // Initialize or fetch data for the dashboard here
+    console.log('Dashboard initialized');
+  }
 }
