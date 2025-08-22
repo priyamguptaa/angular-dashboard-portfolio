@@ -17,19 +17,29 @@ export class DashboardComponent implements OnInit {
     draggable: { enabled: true },
     resizable: { enabled: true },
     pushItems: true,
-    gridType: 'scrollVertical',
-    margin: 8,
-    outerMargin: true,
+    gridType: 'fixed',
+    margin: 12,
+    // outerMargin: true,
+    // minCols: 6,
+    // maxCols: 6,
+    // minRows: 4,
+    // maxRows: 6,
     defaultItemCols: 2,
-    defaultItemRows: 1.5,
   };
 
   dashboard: Array<GridsterItem & { chart: string }> = [
-    { cols: 2, rows: 1.5, y: 0, x: 0, chart: 'line' },
-    { cols: 2, rows: 1.5, y: 0, x: 2, chart: 'bar' },
-    { cols: 2, rows: 1.5, y: 0, x: 4, chart: 'pie' },
-    { cols: 3, rows: 1.5, y: 1, x: 0, chart: 'radar' },
-    { cols: 3, rows: 1.5, y: 1, x: 3, chart: 'doughnut' }
+    { cols: 2, rows: 1, y: 0, x: 0, chart: 'line' },
+    { cols: 2, rows: 1, y: 0, x: 2, chart: 'bar' },
+    { cols: 1, rows: 1, y: 0, x: 4, chart: 'pie' },
+    { cols: 3, rows: 1, y: 1, x: 0, chart: 'radar' },
+    { cols: 2, rows: 1, y: 1, x: 3, chart: 'doughnut' }
+  ];
+
+  kpis = [
+    { title: 'Revenue', value: '$12,500', change: '+8.5%', color: '#009688' },
+    { title: 'Active Users', value: '3,420', change: '+3.2%', color: '#26a69a' },
+    { title: 'Conversion Rate', value: '4.5%', change: '-0.5%', color: '#ef5350' },
+    { title: 'Bounce Rate', value: '32%', change: '+1.1%', color: '#ffa726' }
   ];
 
   chartOptions: ChartConfiguration['options'] = {
@@ -110,8 +120,29 @@ export class DashboardComponent implements OnInit {
     ]
   };
 
+  multiLineChartData: ChartConfiguration<'line'>['data'] = {
+    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+    datasets: [
+      {
+        data: [120, 200, 180, 300, 250, 400],
+        label: '2024',
+        borderColor: '#009688',
+        backgroundColor: 'rgba(0,150,136,0.1)',
+        fill: true,
+        tension: 0.3
+      },
+      {
+        data: [100, 150, 160, 280, 220, 350],
+        label: '2023',
+        borderColor: '#80cbc4',
+        backgroundColor: 'rgba(128,203,196,0.1)',
+        fill: true,
+        tension: 0.3
+      }
+    ]
+  };
+
   ngOnInit() {
-    // Initialize or fetch data for the dashboard here
     console.log('Dashboard initialized');
   }
 }
